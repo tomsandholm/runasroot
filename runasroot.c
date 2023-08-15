@@ -11,7 +11,10 @@ int main(void) {
 	char cmd[128];
 
 	/* run as uid 0 */
-	setuid(0);
+	if ( setuid(0) != 0 ) {
+		printf("setuid has failed\n");
+		exit(1);
+	}
 
 	/* announce what we are doing */
 	printf("Setting permissions on /tmp/yocto to 0777\n");
